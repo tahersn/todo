@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App flex justify-center flex-col items-center">
-      <div className="w-56">
+      <div className="">
         
         <TodoInput />
         <div className="mt-5"><TodoList/></div>
