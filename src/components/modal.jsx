@@ -3,7 +3,7 @@ import React from "react";
 import useStore from "../store";
 import Todo from "./Todo";
 
-function Modal({ todo, setEditing }) {
+function Modal({ todo, setEditing, setShowModal }) {
   const removeTodo = useStore((state) => state.removeTodo);
 
   return (
@@ -16,7 +16,10 @@ function Modal({ todo, setEditing }) {
       </div>
       <div
         className="hover:bg-indigo-700 rounded-sm"
-        onClick={() => setEditing(true)}
+        onClick={() => {
+          setEditing(true);
+          setShowModal(false);
+        }}
       >
         Edit
       </div>

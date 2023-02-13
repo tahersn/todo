@@ -20,7 +20,11 @@ function Todo({ todo }) {
 
       {showModal && (
         <div className="absolute  -right-[9rem] ">
-          <Modal todo={todo} setEditing={setEditing} />
+          <Modal
+            todo={todo}
+            setEditing={setEditing}
+            setShowModal={setShowModal}
+          />
         </div>
       )}
       <div className="absolute z-10 -top-9">
