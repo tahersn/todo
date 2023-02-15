@@ -11,10 +11,10 @@ const useStore = create((set) => ({
   removeTodo: (id) =>
     set((state) => ({ todos: state.todos.filter((todo) => todo.id !== id) })),
 
-  updateTodo: (id, todo) => {
+  updateTodo: (id, text) => {
     set((state) => ({
       todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, ...todo } : todo
+        todo.id === id ? { ...todo, text: text } : todo
       ),
     }));
   },

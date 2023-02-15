@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "./Todo";
-import useStore  from "../store";
+import useStore from "../store";
 
 function TodoList() {
   const todos = useStore((state) => state.todos);
