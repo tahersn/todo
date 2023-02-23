@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BsCheck, BsThreeDots } from "react-icons/bs";
 import Modal from "./modal";
-import useStore from "../store";
 import clsx from "clsx";
 import EditingModal from "./EditingModal";
 

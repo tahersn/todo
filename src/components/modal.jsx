@@ -1,7 +1,6 @@
 import React from "react";
 
 import useStore from "../store";
-import Todo from "./Todo";
 
 function Modal({ todo, setEditing, setShowModal }) {
   const removeTodo = useStore((state) => state.removeTodo);

@@ -1,9 +1,19 @@
 import { create } from "zustand";
+import { getTodos } from "../service/todoService";
 
 const useStore = create((set) => ({
   todos: [],
 
+  fetchTodos: async () => {
+    const result = await getTodos();
+    console.log(result);
+    set({ todos: result.todos });
+  },
+
+  clearTodos: () => set({ todos: [] }),
+
   toggleShowModal: () => set((state) => ({ showModal: !state.showModal })),
+
   addTodo: (todo) => {
     set((state) => ({ todos: [todo, ...state.todos] }));
     console.log(todo);
