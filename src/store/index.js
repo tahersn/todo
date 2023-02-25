@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getTodos } from "../service/todoService";
+import { getTodos, addTodo } from "../service/todoService";
 
 const useStore = create((set) => ({
   todos: [],
@@ -7,7 +7,7 @@ const useStore = create((set) => ({
   fetchTodos: async () => {
     const result = await getTodos();
     console.log(result);
-    set({ todos: result.todos });
+    set({ todos: result.data.todos });
   },
 
   clearTodos: () => set({ todos: [] }),
@@ -15,8 +15,11 @@ const useStore = create((set) => ({
   toggleShowModal: () => set((state) => ({ showModal: !state.showModal })),
 
   addTodo: (todo) => {
-    set((state) => ({ todos: [todo, ...state.todos] }));
-    console.log(todo);
+    todo.addTodo = async () => {
+      const result = await addTodo(todo);
+      console.log(result);
+      set({ todos: result.todos });
+    };
   },
   removeTodo: (id) =>
     set((state) => ({ todos: state.todos.filter((todo) => todo.id !== id) })),

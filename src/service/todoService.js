@@ -1,20 +1,15 @@
+import axios from "axios";
+
 const url = "http://localhost:3000/todos";
 
 export const getTodos = async () => {
-  const response = await fetch(url);
-  console.log(response);
-
-  return response.json();
+  return axios.get(url);
 };
 
 export const addTodo = async (todo) => {
-  const response = await fetch(url, {
-    mode: "no-cors",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todo),
-  });
-  return response.json();
+  return axios.post(url, todo);
+};
+
+export const updateTodo = async (id, todo) => {
+  return axios.put(`${url}/${id}`, todo);
 };

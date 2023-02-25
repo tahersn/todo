@@ -1,12 +1,24 @@
 import React, { useEffect, useRef } from "react";
-import useStore from "../store";
+// import useStore from "../store";
+import { updateTodo } from "../service/todoService";
 
 function EditingModal({ todo, setEditing }) {
   const [text, setText] = React.useState(todo.text);
-  const updateTodo = useStore((state) => state.updateTodo);
+  // const updateTodo = useStore((state) => state.updateTodo);
 
   const handleInput = (e) => {
     setText(e.target.value);
+  };
+
+  handleSubmit = async () => {
+    try {
+      await updateTodo(todo.id, {
+        text: text,
+        finished: todo.finished,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const input = useRef(null);
@@ -29,7 +41,8 @@ function EditingModal({ todo, setEditing }) {
         <div
           className="mr-1 px-3 py-2 bg-green-700 rounded cursor-pointer hover:bg-green-700/70 duration-200"
           onClick={() => {
-            updateTodo(todo.id, text);
+            handleSubmit();
+            console.log(todo);
             setEditing(false);
           }}
         >

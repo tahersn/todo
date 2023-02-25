@@ -1,18 +1,24 @@
 import { useState } from "react";
 import clsx from "clsx";
 import useStore from "../store";
+import { addTodo } from "../service/todoService";
 
 function TodoInput() {
   const [focus, setFocus] = useState(false);
-  const addTodo = useStore((state) => state.addTodo);
+  // const addTodo = useStore((state) => state.addTodo);
   const [text, setText] = useState("");
-  const add = () => {
-    addTodo({
-      id: Math.floor(Math.random() * 10000),
-      text: text,
-      showModal: false,
-    });
-    setText("");
+  const add = async () => {
+    console.log(text);
+
+    try {
+      await addTodo({
+        text: text,
+        finished: false,
+      });
+      setText("");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
